@@ -19,4 +19,5 @@
     <string name="image_location">Image Location</string>
     <string name="image_contact">Image Contact</string>
     <string name="image_phone">Image Phone</string>
+    <string name="image_zip">Image Zip</string>
 </resources>

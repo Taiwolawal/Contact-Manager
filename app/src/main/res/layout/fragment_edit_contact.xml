@@ -83,4 +83,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/location"
          />
+
+
+    <ImageView
+        android:id="@+id/zip"
+        style="@style/edit_contact_image_style"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/location"
+        app:srcCompat="@drawable/zip_code"
+        android:contentDescription="@string/image_zip" />
+
+    <EditText
+        android:id="@+id/txt_zip_code"
+        style="@style/edit_contact_text_style"
+        android:inputType="textPersonName"
+        android:text=""
+        app:layout_constraintBottom_toBottomOf="@+id/zip"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/zip" />
 </androidx.constraintlayout.widget.ConstraintLayout>
