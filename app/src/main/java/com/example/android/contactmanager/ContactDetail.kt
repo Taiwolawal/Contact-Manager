@@ -13,7 +13,8 @@ class ContactDetail : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_detail)
-
+        binding = ActivityContactDetailBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         binding.etBirthday.setOnClickListener {
             setDate()
