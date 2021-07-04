@@ -20,4 +20,6 @@
     <string name="image_contact">Image Contact</string>
     <string name="image_phone">Image Phone</string>
     <string name="image_zip">Image Zip</string>
+    <string name="add_button">Add Button</string>
+    <string name="mm_dd_yyy">MM/DD/YYY</string>
 </resources>
