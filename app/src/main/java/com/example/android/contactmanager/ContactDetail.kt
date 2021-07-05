@@ -1,43 +1,45 @@
 package com.example.android.contactmanager
 
 import android.app.DatePickerDialog
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.example.android.contactmanager.databinding.ActivityContactDetailBinding
-import com.example.android.contactmanager.databinding.ActivityMainBinding
+import com.example.android.contactmanager.db.Contact
 import java.util.*
 
 class ContactDetail : AppCompatActivity() {
 
     private lateinit var binding: ActivityContactDetailBinding
+    private lateinit var contactDetail: Contact
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_contact_detail)
         binding = ActivityContactDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        binding.apply {
-            val firstName = binding.etFirstName
-            val lastName = binding.etLastName
-            val phoneNumber = binding.etPhoneNumber
-            val birthday = binding.etBirthday
-        }
+
 
         binding.etBirthday.setOnClickListener {
             setDate()
         }
 
-        saveContact()
-    }
+        binding.checkButton.setOnClickListener {
+            val firstName =binding.etFirstName.text.toString()
+            val lastName = binding.etLastName.text.toString()
+            val phoneNumber = binding.etPhoneNumber.text.toString().toInt()
+            val address = binding.etAddress.text.toString()
+            val zipCode = binding.etZipCode.text.toString().toInt()
+            val contactDetail = Contact(id=0, firstName,lastName, phoneNumber,address, zipCode)
 
-    private fun saveContact() {
-        binding.apply {
-            val firstName = binding.etFirstName
-            val lastName = binding.etLastName
-            val phoneNumber = binding.etPhoneNumber
-            val birthday = binding.etBirthday
+//            if(firstName == "" || lastName == "")
 
 
         }
+        saveContact()
+
+    }
+
+     fun saveContact() {
 
     }
 

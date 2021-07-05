@@ -12,7 +12,8 @@ class ContactAdapter(private val clickListener: (Contact) -> Unit) :
     private val contactsList = ArrayList<Contact>()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        val binding = ItemContactBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemContactBinding
+            .inflate(LayoutInflater.from(parent.context),parent,false)
         return MyViewHolder(binding)
     }
 
