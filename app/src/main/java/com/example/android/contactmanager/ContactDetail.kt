@@ -2,6 +2,7 @@ package com.example.android.contactmanager
 
 import android.app.DatePickerDialog
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android.contactmanager.databinding.ActivityContactDetailBinding
 import com.example.android.contactmanager.db.Contact
@@ -26,12 +27,16 @@ class ContactDetail : AppCompatActivity() {
         binding.checkButton.setOnClickListener {
             val firstName =binding.etFirstName.text.toString()
             val lastName = binding.etLastName.text.toString()
-            val phoneNumber = binding.etPhoneNumber.text.toString().toInt()
+            val phoneNumber = binding.etPhoneNumber.text.toString().toIntOrNull()
             val address = binding.etAddress.text.toString()
             val zipCode = binding.etZipCode.text.toString().toInt()
-            val contactDetail = Contact(id=0, firstName,lastName, phoneNumber,address, zipCode)
+            contactDetail = Contact(id=0, firstName,lastName, phoneNumber,address, zipCode)
 
-//            if(firstName == "" || lastName == "")
+            if(firstName == "" || lastName == ""|| phoneNumber == 0 || address == "" || zipCode == 0 ){
+                Toast.makeText(this,"Fill in the blank form", Toast.LENGTH_SHORT ).show()
+            } else {
+
+            }
 
 
         }
