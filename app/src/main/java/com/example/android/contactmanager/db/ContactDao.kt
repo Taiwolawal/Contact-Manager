@@ -2,6 +2,7 @@ package com.example.android.contactmanager.db
 
 import androidx.lifecycle.LiveData
 import androidx.room.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface ContactDao {
@@ -16,5 +17,5 @@ interface ContactDao {
     suspend fun deleteContact(contact: Contact)
 
     @Query("SELECT * FROM contact_data_table")
-     fun getAllContact(): LiveData<List<Contact>>
+     fun getAllContact(): Flow<List<Contact>>
 }
