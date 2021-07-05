@@ -15,10 +15,30 @@ class ContactDetail : AppCompatActivity() {
         setContentView(R.layout.activity_contact_detail)
         binding = ActivityContactDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        binding.apply {
+            val firstName = binding.etFirstName
+            val lastName = binding.etLastName
+            val phoneNumber = binding.etPhoneNumber
+            val birthday = binding.etBirthday
+        }
 
         binding.etBirthday.setOnClickListener {
             setDate()
         }
+
+        saveContact()
+    }
+
+    private fun saveContact() {
+        binding.apply {
+            val firstName = binding.etFirstName
+            val lastName = binding.etLastName
+            val phoneNumber = binding.etPhoneNumber
+            val birthday = binding.etBirthday
+
+
+        }
+
     }
 
     private fun setDate() {
