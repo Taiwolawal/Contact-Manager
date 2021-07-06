@@ -6,12 +6,14 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android.contactmanager.databinding.ActivityContactDetailBinding
 import com.example.android.contactmanager.db.Contact
+import com.google.android.material.snackbar.Snackbar
 import java.util.*
 
 class ContactDetail : AppCompatActivity() {
 
     private lateinit var binding: ActivityContactDetailBinding
     private lateinit var contactDetail: Contact
+    private lateinit var viewModel: ContactViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,27 +27,27 @@ class ContactDetail : AppCompatActivity() {
         }
 
         binding.checkButton.setOnClickListener {
-            val firstName =binding.etFirstName.text.toString()
-            val lastName = binding.etLastName.text.toString()
-            val phoneNumber = binding.etPhoneNumber.text.toString().toIntOrNull()
-            val address = binding.etAddress.text.toString()
-            val zipCode = binding.etZipCode.text.toString().toInt()
-            contactDetail = Contact(id=0, firstName,lastName, phoneNumber,address, zipCode)
-
-            if(firstName == "" || lastName == ""|| phoneNumber == 0 || address == "" || zipCode == 0 ){
-                Toast.makeText(this,"Fill in the blank form", Toast.LENGTH_SHORT ).show()
-            } else {
-
-            }
-
-
+            saveContact()
+            finish()
         }
-        saveContact()
+
 
     }
 
-     fun saveContact() {
+     private fun saveContact() {
+         val firstName =binding.etFirstName.text.toString()
+         val lastName = binding.etLastName.text.toString()
+         val phoneNumber = binding.etPhoneNumber.text.toString().toIntOrNull()
+         val address = binding.etAddress.text.toString()
+         val zipCode = binding.etZipCode.text.toString().toInt()
+         contactDetail = Contact(id=0, firstName,lastName, phoneNumber,address, zipCode)
 
+         if(firstName == "" || lastName == ""|| phoneNumber == 0 || address == "" || zipCode == 0 ){
+             Snackbar.make(binding.contactDetailLayout, R.string.fill_blank, Snackbar.LENGTH_LONG)
+         } else {
+                viewModel.saveContact(contactDetail)
+             Snackbar.make(binding.contactDetailLayout, R.string.contact_added, Snackbar.LENGTH_LONG)
+         }
     }
 
     private fun setDate() {
