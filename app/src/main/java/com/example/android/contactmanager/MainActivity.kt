@@ -11,12 +11,11 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: ContactAdapter
     private lateinit var binding: ActivityMainBinding
+    private lateinit var viewModel: MainViewModel
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
-
-
 
         binding.fabButton.setOnClickListener {
             val intent =  Intent(this@MainActivity, ContactDetail::class.java)
@@ -35,7 +34,11 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun displayContactsList() {
-        TODO("Not yet implemented")
+        viewModel.getAllContact()
+        viewModel.allContacts.observe(this,{
+            adapter.showContacts(it)
+            adapter.notifyDataSetChanged()
+        })
     }
 
     private fun listItemClicked(contact: Contact) {

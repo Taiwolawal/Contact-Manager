@@ -8,7 +8,6 @@ import kotlinx.coroutines.launch
 
 class ContactViewModel (private val contactRepository: ContactRepository): ViewModel() {
 
-
     fun saveContact(contact: Contact) = viewModelScope.launch {
        contactRepository.insert(contact)
     }

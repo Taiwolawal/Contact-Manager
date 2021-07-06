@@ -2,7 +2,7 @@ package com.example.android.contactmanager.db
 
 class ContactRepository (private val dao: ContactDao) {
 
-    val contacts = dao.getAllContact()
+    val allContacts = dao.getAllContact()
 
     suspend fun  insert (contact: Contact){
         dao.insertContact(contact)

@@ -22,6 +22,11 @@ class ContactAdapter(private val clickListener: (Contact) -> Unit) :
     }
 
     override fun getItemCount() = contactsList.size
+
+    fun showContacts(contact: List<Contact>){
+        contactsList.clear()
+        contactsList.addAll(contact)
+    }
 }
 
 class MyViewHolder(val binding: ItemContactBinding) : RecyclerView.ViewHolder(binding.root) {
