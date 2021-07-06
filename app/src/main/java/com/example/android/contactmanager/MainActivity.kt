@@ -42,7 +42,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun listItemClicked(contact: Contact) {
-        TODO("Not yet implemented")
+        val intent = Intent(this@MainActivity, EditContact::class.java)
+        startActivity(intent)
     }
 
 

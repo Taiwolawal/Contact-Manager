@@ -34,9 +34,9 @@ class ContactDetail : AppCompatActivity() {
     }
 
     private fun saveContact() {
-        val firstName = binding.etFirstName.text.toString()
-        val lastName = binding.etLastName.text.toString()
-        val phoneNumber = binding.etPhoneNumber.text.toString().toIntOrNull()
+        val firstName = (binding.etFirstName.text.toString()).capitalize(Locale.ROOT)
+        val lastName = (binding.etLastName.text.toString()).capitalize(Locale.ROOT)
+        val phoneNumber = binding.etNumber.text.toString().toIntOrNull()
         val address = binding.etAddress.text.toString()
         val zipCode = binding.etZipCode.text.toString().toIntOrNull()
         contactDetail = Contact(id = 0, firstName, lastName, phoneNumber, address, zipCode)

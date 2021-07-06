@@ -44,12 +44,12 @@
         android:id="@+id/phone_number"
         android:text="@string/phone_number"
         style="@style/tv_style"
-        app:layout_constraintStart_toStartOf="@+id/et_phone_number"
+        app:layout_constraintStart_toStartOf="@+id/et_number"
         app:layout_constraintTop_toBottomOf="@+id/et_last_name" />
 
     <EditText
-        android:id="@+id/et_phone_number"
-        android:inputType="phone"
+        android:id="@+id/et_number"
+        android:inputType="number"
         style="@style/contact_details_et_style"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -60,7 +60,7 @@
         android:text="@string/birthday"
         style="@style/tv_style"
         app:layout_constraintStart_toStartOf="@+id/et_birthday"
-        app:layout_constraintTop_toBottomOf="@+id/et_phone_number" />
+        app:layout_constraintTop_toBottomOf="@+id/et_number" />
 
     <EditText
         android:id="@+id/et_birthday"

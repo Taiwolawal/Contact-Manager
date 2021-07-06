@@ -10,12 +10,12 @@ interface ContactDao {
     @Insert
     suspend fun insertContact(contact: Contact)
 
-    @Update
+    @Update(onConflict = OnConflictStrategy.REPLACE)
     suspend fun updateContact(contact: Contact)
 
     @Delete
     suspend fun deleteContact(contact: Contact)
 
-    @Query("SELECT * FROM contact_data_table")
+    @Query("SELECT * FROM contact_data_table ORDER BY firstName ASC ")
      fun getAllContact(): List<Contact>
 }
