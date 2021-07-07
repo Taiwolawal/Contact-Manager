@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         initRecyclerview()
+        //update
 
     }
 
