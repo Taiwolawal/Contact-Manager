@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".EditContacts">
+    tools:context=".EditContact">
 
 
     <ImageView
@@ -18,7 +18,7 @@
         />
 
     <EditText
-        android:id="@+id/txt_contact"
+        android:id="@+id/et_contact"
         style="@style/edit_contact_text_style"
         android:text=""
         android:inputType="textPersonName"
@@ -37,7 +37,7 @@
         />
 
     <EditText
-        android:id="@+id/txt_phone_number"
+        android:id="@+id/et_phone_number"
         style="@style/edit_contact_text_style"
         android:text=""
         android:inputType="phone"
@@ -55,7 +55,7 @@
         android:contentDescription="@string/image_cake" />
 
     <EditText
-        android:id="@+id/txt_birthday_date"
+        android:id="@+id/et_birthday_date"
         style="@style/edit_contact_text_style"
         android:inputType="date"
         android:text=""
@@ -75,7 +75,7 @@
         />
 
     <EditText
-        android:id="@+id/txt_location"
+        android:id="@+id/et_location"
         style="@style/edit_contact_text_style"
         android:inputType="text"
         android:text=""
@@ -96,7 +96,7 @@
         android:contentDescription="@string/image_zip" />
 
     <EditText
-        android:id="@+id/txt_zip_code"
+        android:id="@+id/et_zip"
         style="@style/edit_contact_text_style"
         android:inputType="textPersonName"
         android:text=""
@@ -113,6 +113,29 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/ic_check" />
+
+<!--    <com.google.android.material.textfield.TextInputLayout-->
+<!--        android:id="@+id/textInputLayout"-->
+<!--        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:layout_margin="8dp"-->
+<!--        app:prefixText="+234"-->
+<!--        android:hint="@string/hint"-->
+<!--        app:helperTextTextColor="@color/purple_700"-->
+<!--        app:startIconDrawable="@drawable/ic_person"-->
+<!--        app:layout_constraintTop_toBottomOf="@id/et_zip_code">-->
+
+<!--        <com.google.android.material.textfield.TextInputEditText-->
+<!--            android:id="@+id/hints"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:inputType="number"-->
+<!--            />-->
+<!--    </com.google.android.material.textfield.TextInputLayout>-->
+
 
 
 

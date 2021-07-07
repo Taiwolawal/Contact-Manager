@@ -6,6 +6,14 @@ import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
+const val CONTACT_ID = "extra_contact_id"
+const val CONTACT_FIRST_NAME = "extra_contact_first_name"
+const val CONTACT_LAST_NAME = "extra_contact_last_name"
+const val CONTACT_PHONE_NUMBER = "extra_contact_phone_number"
+const val CONTACT_ADDRESS = "extra_contact_address"
+const val CONTACT_BIRTHDAY = "extra_contact_birthday"
+const val CONTACT_ZIP_CODE = "extra_contact_zip_code"
+
 private val df = SimpleDateFormat("dd/MM/yy", Locale.US)
 
 fun String.toDateOrToday(): Date = try {

@@ -1,8 +1,6 @@
 package com.example.android.contactmanager
 
-import android.app.DatePickerDialog
 import android.os.Bundle
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.android.contactmanager.databinding.ActivityContactDetailBinding
 import com.example.android.contactmanager.db.Contact
