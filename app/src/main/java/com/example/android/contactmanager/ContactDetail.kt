@@ -19,7 +19,6 @@ class ContactDetail : AppCompatActivity() {
         binding = ActivityContactDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         binding.etBirthday.setOnClickListener {
             showDatePickerDialog(binding.etBirthday)
         }
@@ -34,12 +33,12 @@ class ContactDetail : AppCompatActivity() {
     private fun saveContact() {
         val firstName = (binding.etFirstName.text.toString()).capitalize(Locale.ROOT)
         val lastName = (binding.etLastName.text.toString()).capitalize(Locale.ROOT)
-        val phoneNumber = binding.etNumber.text.toString().toIntOrNull()
+        val phoneNumber = binding.etNumber.text.toString()
         val address = binding.etAddress.text.toString()
-        val zipCode = binding.etZipCode.text.toString().toIntOrNull()
+        val zipCode = binding.etZipCode.text.toString()
         contactDetail = Contact(id = 0, firstName, lastName, phoneNumber, address, zipCode)
 
-        if (firstName == "" || lastName == "" || phoneNumber == null || address == "" || zipCode == null) {
+        if (firstName == "" || lastName == "" || phoneNumber == "" || address == "" || zipCode == "") {
             Snackbar.make(binding.contactDetailLayout, R.string.fill_blank, Snackbar.LENGTH_LONG).show()
         } else {
             viewModel.saveContact(contactDetail)

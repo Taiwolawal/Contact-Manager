@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/editDetailLayout"
     tools:context=".EditContact">
 
 
@@ -138,10 +139,10 @@
         app:layout_constraintTop_toTopOf="@+id/location">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/edit_location"
+            android:id="@+id/edit_address"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/location"
+            android:hint="@string/address"
             android:inputType="text"
             android:text="" />
     </com.google.android.material.textfield.TextInputLayout>

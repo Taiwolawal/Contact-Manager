@@ -23,4 +23,16 @@ class ContactViewModel (private val contactRepository: ContactRepository ) : Vie
     fun saveContact(contact: Contact) = viewModelScope.launch {
         contactRepository.insert(contact)
     }
+
+    fun deleteContactById(id: Long) = viewModelScope.launch {
+        contactRepository.deleteContactById(id)
+    }
+
+    fun updateContact(contact: Contact) = viewModelScope.launch {
+        contactRepository.update(contact)
+    }
+
+    fun getContactId(id: Long) = viewModelScope.launch {
+        contactRepository.getContactId(id)
+    }
 }

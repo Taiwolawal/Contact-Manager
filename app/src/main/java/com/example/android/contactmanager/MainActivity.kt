@@ -53,8 +53,8 @@ class MainActivity : AppCompatActivity() {
             it.putExtra(CONTACT_PHONE_NUMBER, contact.phoneNumber)
             it.putExtra(CONTACT_ZIP_CODE, contact.zipCode)
             it.putExtra(CONTACT_ADDRESS,contact.address)
-            it.putExtra("TEAM", contact.address)
-//        it.putExtra(CONTACT_BIRTHDAY,contact.)
+            it.putExtra(CONTACT_BIRTHDAY, contact.birthday)
+
         }
         startActivity(intent)
     }
