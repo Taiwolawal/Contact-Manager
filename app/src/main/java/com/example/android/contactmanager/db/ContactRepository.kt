@@ -16,7 +16,7 @@ class ContactRepository (private val dao: ContactDao) {
         dao.deleteContactById(id)
     }
 
-    suspend fun  getContactId(id: Long){
+    suspend fun getContactId(id: Long){
         dao.findContactId(id)
     }
 }

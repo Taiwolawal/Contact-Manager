@@ -80,15 +80,14 @@ class EditContact : AppCompatActivity() {
         }
     }
 
-
     private fun deleteDialog() {
         val delete = AlertDialog.Builder(this)
-            .setTitle(getString(R.string.delete_contact))
-            .setMessage(getString(R.string.request_to_delete_message))
-            .setPositiveButton(getString(R.string.delete)) { _, _ ->
+            .setTitle(R.string.delete_contact)
+            .setMessage(R.string.request_to_delete_message)
+            .setPositiveButton(R.string.delete) { _, _ ->
                 viewModel.deleteContactById(contactId)
             }
-            .setNegativeButton(getString(R.string.decline)) { _, _ ->
+            .setNegativeButton(R.string.decline) { _, _ ->
 
             }
             .create()
