@@ -14,56 +14,108 @@
         style="@style/edit_contact_image_style"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:contentDescription="@string/image_contact"
-        />
+        android:contentDescription="@string/image_contact" />
 
-    <EditText
-        android:id="@+id/et_contact"
-        style="@style/edit_contact_text_style"
-        android:text=""
-        android:inputType="textPersonName"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_first_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="8dp"
+        app:helperTextTextColor="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="@+id/contact_name"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/contact_name" />
+        app:layout_constraintStart_toEndOf="@id/contact_name"
+        app:layout_constraintTop_toTopOf="@+id/contact_name"
+        >
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_first_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/edit_first_name"
+            android:text=""
+            android:inputType="text" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_last_name"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:helperTextTextColor="@color/purple_700"
+        app:layout_constraintEnd_toEndOf="@+id/txt_first_name"
+        app:layout_constraintStart_toStartOf="@id/txt_first_name"
+        app:layout_constraintTop_toBottomOf="@id/txt_first_name">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_last_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/last_name"
+            android:inputType="text"
+            android:text="" />
+    </com.google.android.material.textfield.TextInputLayout>
 
 
     <ImageView
         android:id="@+id/contact_phone"
-        app:srcCompat="@drawable/ic_phone"
         style="@style/edit_contact_image_style"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contact_name"
         android:contentDescription="@string/image_phone"
-        />
-
-    <EditText
-        android:id="@+id/et_phone_number"
-        style="@style/edit_contact_text_style"
-        android:text=""
-        android:inputType="phone"
-        app:layout_constraintBottom_toBottomOf="@+id/contact_phone"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/contact_phone" />
-
-
-    <ImageView
-        android:id="@+id/birthday"
-        app:srcCompat="@drawable/ic_cake"
-        style="@style/edit_contact_image_style"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/contact_phone"
-        android:contentDescription="@string/image_cake" />
+        app:layout_constraintTop_toBottomOf="@+id/txt_last_name"
+        app:srcCompat="@drawable/ic_phone" />
 
-    <EditText
-        android:id="@+id/et_birthday_date"
-        style="@style/edit_contact_text_style"
-        android:inputType="date"
-        android:text=""
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_phone_number"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:helperTextTextColor="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@+id/contact_phone"
+        app:layout_constraintEnd_toEndOf="@+id/txt_last_name"
+        app:layout_constraintStart_toStartOf="@id/txt_last_name"
+        app:layout_constraintTop_toTopOf="@+id/contact_phone">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_phone_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/phone"
+            android:inputType="number"
+            android:text="" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/birthday"
+            app:srcCompat="@drawable/ic_cake"
+            style="@style/edit_contact_image_style"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/contact_phone"
+            android:contentDescription="@string/image_cake" />
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_birthday"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:helperTextTextColor="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="@+id/birthday"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/birthday"
-        />
+        app:layout_constraintEnd_toEndOf="@+id/txt_phone_number"
+        app:layout_constraintStart_toStartOf="@id/txt_phone_number"
+        app:layout_constraintTop_toTopOf="@+id/birthday">
 
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_birthday"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/birthday"
+            android:text=""
+            android:focusable="false"
+            android:focusableInTouchMode="false" />
+    </com.google.android.material.textfield.TextInputLayout>
 
     <ImageView
         android:id="@+id/location"
@@ -74,35 +126,109 @@
         android:contentDescription="@string/image_location"
         />
 
-    <EditText
-        android:id="@+id/et_location"
-        style="@style/edit_contact_text_style"
-        android:inputType="text"
-        android:text=""
-        app:layout_constraintBottom_toBottomOf="@+id/location"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/location"
-        />
-
-
-    <ImageView
-        android:id="@+id/zip"
-        style="@style/edit_contact_image_style"
-        android:layout_width="wrap_content"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_location"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/location"
-        app:srcCompat="@drawable/zip_code"
-        android:contentDescription="@string/image_zip" />
+        app:helperTextTextColor="@color/purple_700"
+        app:layout_constraintBottom_toBottomOf="@+id/location"
+        app:layout_constraintEnd_toEndOf="@+id/txt_birthday"
+        app:layout_constraintStart_toStartOf="@id/txt_birthday"
+        app:layout_constraintTop_toTopOf="@+id/location">
 
-    <EditText
-        android:id="@+id/et_zip"
-        style="@style/edit_contact_text_style"
-        android:inputType="textPersonName"
-        android:text=""
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_location"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/location"
+            android:inputType="text"
+            android:text="" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <ImageView
+            android:id="@+id/zip"
+            style="@style/edit_contact_image_style"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/location"
+            app:srcCompat="@drawable/zip_code"
+            android:contentDescription="@string/image_zip" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/txt_zip_code"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:helperTextTextColor="@color/purple_700"
         app:layout_constraintBottom_toBottomOf="@+id/zip"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/zip" />
+        app:layout_constraintEnd_toEndOf="@+id/txt_location"
+        app:layout_constraintStart_toStartOf="@id/txt_location"
+        app:layout_constraintTop_toTopOf="@+id/zip">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/edit_zip_code"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/zip_code"
+            android:inputType="number"
+            android:text="" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <!--    <EditText-->
+<!--        android:id="@+id/et_contact"-->
+<!--        style="@style/edit_contact_text_style"-->
+<!--        android:text=""-->
+<!--        android:inputType="textPersonName"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/contact_name"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/contact_name" />-->
+
+
+    <!--    <EditText-->
+<!--        android:id="@+id/et_phone_number"-->
+<!--        style="@style/edit_contact_text_style"-->
+<!--        android:text=""-->
+<!--        android:inputType="phone"-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/contact_phone"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/contact_phone" />-->
+
+<!--    <EditText-->
+<!--        android:id="@+id/et_birthday_date"-->
+<!--        style="@style/edit_contact_text_style"-->
+<!--        android:inputType="date"-->
+<!--        android:text=""-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/birthday"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/birthday"-->
+<!--        />-->
+
+
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/et_location"-->
+<!--        style="@style/edit_contact_text_style"-->
+<!--        android:inputType="text"-->
+<!--        android:text=""-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/location"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/location"-->
+<!--        />-->
+
+
+<!--    <EditText-->
+<!--        android:id="@+id/et_zip"-->
+<!--        style="@style/edit_contact_text_style"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:text=""-->
+<!--        app:layout_constraintBottom_toBottomOf="@+id/zip"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/zip" />-->
+
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/add_button"

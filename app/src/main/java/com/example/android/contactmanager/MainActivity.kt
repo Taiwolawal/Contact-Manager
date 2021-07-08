@@ -55,9 +55,8 @@ class MainActivity : AppCompatActivity() {
             it.putExtra(CONTACT_ADDRESS,contact.address)
             it.putExtra("TEAM", contact.address)
 //        it.putExtra(CONTACT_BIRTHDAY,contact.)
-            startActivity(it)
         }
-
+        startActivity(intent)
     }
 
 

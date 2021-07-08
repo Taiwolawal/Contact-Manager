@@ -17,12 +17,12 @@ data class Contact(
   var lastName: String?,
 
   @ColumnInfo(name = "contact_phone_number")
-  var phoneNumber: Int?,
+  var phoneNumber: String?,
 //  var birthday: Date,
 
   @ColumnInfo(name = "contact_address")
   var address: String?,
 
   @ColumnInfo(name = "contact_zip_code")
-  var zipCode: Int?
+  var zipCode: String?
 )

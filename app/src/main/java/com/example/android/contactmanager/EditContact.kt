@@ -12,37 +12,50 @@ class EditContact : AppCompatActivity() {
     private var contactFirstName = ""
     private var contactLastName = ""
     private var contactAddress = ""
-    private var contactPhoneNumber = 0
-    private var contactZipCode = 0
+    private var contactPhoneNumber = ""
+    private var contactZipCode = ""
     private var contactBirthday = 0
 
-    private  lateinit var binding: ActivityEditContactBinding
+    private lateinit var binding: ActivityEditContactBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_edit_contact)
+        binding = ActivityEditContactBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val extras = intent.extras
-        if(extras != null){
+        if (extras != null) {
             showContact(extras)
-        } else{
+        } else {
             finish()
         }
 
+        saveContact()
+        deleteContact()
+
+    }
+
+    private fun deleteContact() {
+        TODO("Not yet implemented")
+    }
+
+    private fun saveContact() {
+        TODO("Not yet implemented")
     }
 
     private fun showContact(extras: Bundle) {
-         contactId = extras.getInt(CONTACT_ID)
+        contactId = extras.getInt(CONTACT_ID)
         contactFirstName = extras.getString(CONTACT_FIRST_NAME, "")
-        contactLastName = extras.getString(CONTACT_LAST_NAME,"")
+        contactLastName = extras.getString(CONTACT_LAST_NAME, "")
         contactAddress = extras.getString(CONTACT_ADDRESS, "")
-        contactPhoneNumber = extras.getInt(CONTACT_PHONE_NUMBER, 0)
-        contactZipCode = extras.getInt(CONTACT_ZIP_CODE, 0)
+        contactPhoneNumber = extras.getString(CONTACT_PHONE_NUMBER, "")
+        contactZipCode = extras.getString(CONTACT_ZIP_CODE, "")
 
-
-
-        binding.apply {
-
-        }
+        binding.editFirstName.text?.append(contactFirstName.subSequence(0,contactFirstName.lastIndex))
+        binding.editLastName.text?.append(contactLastName.subSequence(0,contactLastName.lastIndex))
+        binding.editPhoneNumber.text?.append(contactPhoneNumber.subSequence(0,contactFirstName.lastIndex))
+        binding.editLocation.text?.append(contactFirstName.subSequence(0,contactFirstName.lastIndex))
+        binding.editZipCode.text?.append(contactZipCode)
+//        binding.editBirthday.text?.append(contactFirstName)
 
     }
 }
