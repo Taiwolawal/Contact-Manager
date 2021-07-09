@@ -33,10 +33,11 @@ class ContactDetail : AppCompatActivity() {
     private fun saveContact() {
         val firstName = (binding.etFirstName.text.toString()).capitalize(Locale.ROOT)
         val lastName = (binding.etLastName.text.toString()).capitalize(Locale.ROOT)
+        val birthday = binding.etBirthday.text.toString()
         val phoneNumber = binding.etNumber.text.toString()
         val address = binding.etAddress.text.toString()
         val zipCode = binding.etZipCode.text.toString()
-        contactDetail = Contact(id = 0, firstName, lastName, phoneNumber, address, zipCode)
+        contactDetail = Contact(id = 0, firstName, lastName, phoneNumber,birthday, address, zipCode)
 
         if (firstName == "" || lastName == "" || phoneNumber == "" || address == "" || zipCode == "") {
             Snackbar.make(binding.contactDetailLayout, R.string.fill_blank, Snackbar.LENGTH_LONG).show()

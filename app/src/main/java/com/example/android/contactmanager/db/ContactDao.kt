@@ -14,8 +14,7 @@ interface ContactDao {
     @Query("DELETE  FROM contact_data_table WHERE id = :id")
     suspend fun deleteContactById(id: Long)
 
-    @Query("SELECT * FROM contact_data_table WHERE id = id")
-    suspend fun findContactId(id: Long): Contact
+
 
     @Query("SELECT * FROM contact_data_table ORDER BY contact_first_name ASC ")
      fun getAllContact(): List<Contact>

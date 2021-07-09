@@ -3,9 +3,11 @@ package com.example.android.contactmanager
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.android.contactmanager.databinding.ActivityMainBinding
 import com.example.android.contactmanager.db.Contact
+import com.example.android.contactmanager.db.ContactViewModelFactory
 import com.google.android.material.snackbar.Snackbar
 
 class MainActivity : AppCompatActivity() {
@@ -13,11 +15,15 @@ class MainActivity : AppCompatActivity() {
     private lateinit var adapter: ContactAdapter
     private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: ContactViewModel
+    private lateinit var viewModelFactory: ContactViewModelFactory
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel = ViewModelProvider(this, viewModelFactory).get(ContactViewModel::class.java)
         binding.fabButton.setOnClickListener {
             val intent =  Intent(this@MainActivity, ContactDetail::class.java)
             startActivity(intent)

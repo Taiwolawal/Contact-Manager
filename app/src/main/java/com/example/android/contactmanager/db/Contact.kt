@@ -8,7 +8,7 @@ import java.io.Serializable
 @Entity(tableName = "contact_data_table")
 data class Contact(
   @PrimaryKey(autoGenerate = true)
-  val id: Long? = null,
+  val id: Long?,
 
   @ColumnInfo(name = "contact_first_name")
   var firstName: String?,
@@ -28,3 +28,4 @@ data class Contact(
   @ColumnInfo(name = "contact_zip_code")
   var zipCode: String?
 ): Serializable
+//): Serializable

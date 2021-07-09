@@ -32,7 +32,5 @@ class ContactViewModel (private val contactRepository: ContactRepository ) : Vie
         contactRepository.update(contact)
     }
 
-    fun getContactId(id: Long) = viewModelScope.launch {
-        contactRepository.getContactId(id)
-    }
+//    fun getContactId(id: Long): Long = contactRepository.getContactId(id)
 }

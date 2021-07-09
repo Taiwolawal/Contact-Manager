@@ -33,5 +33,8 @@ class MyViewHolder(val binding: ItemContactBinding) : RecyclerView.ViewHolder(bi
     fun bind(contact: Contact, clickListener: (Contact) -> Unit) {
         binding.firstNames.text = contact.firstName
         binding.lastNames.text = contact.lastName
+        binding.listItem.setOnClickListener {
+            clickListener(contact)
+        }
     }
 }
