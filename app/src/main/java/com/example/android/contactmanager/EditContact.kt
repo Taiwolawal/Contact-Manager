@@ -1,11 +1,12 @@
 package com.example.android.contactmanager
 
-import android.content.Intent
+import android.app.Activity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import com.example.android.contactmanager.databinding.ActivityEditContactBinding
 import com.example.android.contactmanager.db.Contact
 import com.google.android.material.snackbar.Snackbar
@@ -15,8 +16,8 @@ import java.util.*
 class EditContact : AppCompatActivity() {
 
 
-    private var contactId = 0L
-    private var id = 0L
+    private var contactId = 0
+    private var id = 0
     private var contactFirstName = ""
     private var contactLastName = ""
     private var contactAddress = ""
@@ -31,6 +32,8 @@ class EditContact : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityEditContactBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        viewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
 
         val extras = intent.extras
         if (extras != null) {
@@ -53,8 +56,7 @@ class EditContact : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.save -> {
-//                updateContact()
-                finish()
+                updateContact()
                 return true
             }
 
@@ -66,23 +68,26 @@ class EditContact : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-//    private fun updateContact() {
-//        val editContactId = viewModel.getContactId(id)
-//        val firstName = (binding.editFirstName.text.toString()).capitalize(Locale.ROOT)
-//        val lastName = (binding.editLastName.text.toString()).capitalize(Locale.ROOT)
-//        val phoneNumber = binding.editPhoneNumber.text.toString()
-//        val birthday = binding.editBirthday.text.toString()
-//        val address = binding.editAddress.text.toString()
-//        val zipCode = binding.editZipCode.text.toString()
-//        editContact = Contact(editContactId, firstName, lastName, phoneNumber,birthday, address, zipCode)
-//
-//        if (firstName == "" || lastName == "" || phoneNumber == "" || address == "" || zipCode == "" || birthday == "") {
-//            Snackbar.make(binding.editDetailLayout, R.string.fill_blank, Snackbar.LENGTH_LONG).show()
-//        } else {
-//            viewModel.updateContact(editContact)
-//            Snackbar.make(binding.editDetailLayout,R.string.contact_updated, Snackbar.LENGTH_LONG).show()
-//        }
-//    }
+    private fun updateContact() {
+        val editContactId = id
+        val firstName = (binding.editFirstName.text.toString()).capitalize(Locale.ROOT)
+        val lastName = (binding.editLastName.text.toString()).capitalize(Locale.ROOT)
+        val phoneNumber = binding.editPhoneNumber.text.toString()
+        val birthday = binding.editBirthday.text.toString()
+        val address = binding.editAddress.text.toString()
+        val zipCode = binding.editZipCode.text.toString()
+        editContact =
+            Contact(editContactId, firstName, lastName, phoneNumber, birthday, address, zipCode)
+
+        if (firstName == "" || lastName == "" || phoneNumber == "" || address == "" || zipCode == "" || birthday == "") {
+            Snackbar.make(binding.editDetailLayout, R.string.fill_blank, Snackbar.LENGTH_LONG)
+                .show()
+        } else {
+            viewModel.updateContact(editContact)
+            setResult(Activity.RESULT_OK)
+            finish()
+        }
+    }
 
     private fun deleteDialog() {
         val delete = AlertDialog.Builder(this)
@@ -90,6 +95,7 @@ class EditContact : AppCompatActivity() {
             .setMessage(R.string.request_to_delete_message)
             .setPositiveButton(R.string.delete) { _, _ ->
                 viewModel.deleteContactById(id)
+                finish()
             }
             .setNegativeButton(R.string.decline) { _, _ ->
 
@@ -100,7 +106,7 @@ class EditContact : AppCompatActivity() {
 
 
     private fun showContact(extras: Bundle) {
-        contactId = extras.getLong(CONTACT_ID)
+        contactId = extras.getInt(CONTACT_ID)
         contactFirstName = extras.getString(CONTACT_FIRST_NAME, "")
         contactLastName = extras.getString(CONTACT_LAST_NAME, "")
         contactAddress = extras.getString(CONTACT_ADDRESS, "")
@@ -108,21 +114,22 @@ class EditContact : AppCompatActivity() {
         contactZipCode = extras.getString(CONTACT_ZIP_CODE, "")
         contactBirthday = extras.getString(CONTACT_BIRTHDAY, "")
 
-        binding.editFirstName.text?.append(contactFirstName.subSequence(0, contactFirstName.lastIndex))
-        binding.editLastName.text?.append(contactLastName.subSequence(0, contactLastName.lastIndex))
-        binding.editPhoneNumber.text?.append(contactPhoneNumber.subSequence(0, contactFirstName.lastIndex))
-        binding.editAddress.text?.append(contactFirstName.subSequence(0, contactFirstName.lastIndex))
-        binding.editZipCode.text?.append(contactZipCode.subSequence(0, contactZipCode.lastIndex))
-        binding.editBirthday.text?.append(contactBirthday.subSequence(0, contactBirthday.lastIndex))
+        binding.editFirstName.text?.append(contactFirstName)
+        binding.editLastName.text?.append(contactLastName)
+        binding.editPhoneNumber.text?.append(contactPhoneNumber)
+        binding.editAddress.text?.append(contactAddress)
+        binding.editZipCode.text?.append(contactZipCode)
+        binding.editBirthday.text?.append(contactBirthday)
 
-//        val contactId = getContactId(contactId)
-//        id = contactId
+        val contactId = getContactId(contactId.toInt())
+        id = contactId
 
     }
 
-//    private fun getContactId(id: Long):Long {
-//         return viewModel.getContactId(id)
-//    }
+    private fun getContactId(id: Int): Int {
+        return id
+    }
+
 }
 
 

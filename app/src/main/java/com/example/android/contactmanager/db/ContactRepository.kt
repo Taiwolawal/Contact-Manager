@@ -1,22 +1,22 @@
 package com.example.android.contactmanager.db
 
-class ContactRepository (private val dao: ContactDao) {
+import com.example.android.contactmanager.ContactApplication
 
-    val allContacts = dao.getAllContact()
+object ContactRepository {
+
+    private val dao = ContactApplication.database
+
+    val allContacts = dao.contactDao().getAllContact()
 
     suspend fun  insert (contact: Contact){
-        dao.insertContact(contact)
+        dao.contactDao().insertContact(contact)
     }
 
     suspend fun update(contact: Contact){
-        dao.updateContact(contact)
+        dao.contactDao().updateContact(contact)
     }
 
-    suspend fun deleteContactById(id: Long){
-        dao.deleteContactById(id)
+    suspend fun deleteContactById(id: Int){
+        dao.contactDao().deleteContactById(id)
     }
-
-//    fun getContactId(id: Long): Long{
-//        return dao.findContactId(id)
-//    }
 }

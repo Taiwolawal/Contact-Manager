@@ -2,6 +2,8 @@ package com.example.android.contactmanager
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
+import com.example.android.contactmanager.R
 import com.example.android.contactmanager.databinding.ActivityContactDetailBinding
 import com.example.android.contactmanager.db.Contact
 import com.google.android.material.snackbar.Snackbar
@@ -19,13 +21,14 @@ class ContactDetail : AppCompatActivity() {
         binding = ActivityContactDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        viewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+
         binding.etBirthday.setOnClickListener {
             showDatePickerDialog(binding.etBirthday)
         }
 
         binding.checkButton.setOnClickListener {
             saveContact()
-            finish()
         }
 
     }
@@ -37,13 +40,15 @@ class ContactDetail : AppCompatActivity() {
         val phoneNumber = binding.etNumber.text.toString()
         val address = binding.etAddress.text.toString()
         val zipCode = binding.etZipCode.text.toString()
-        contactDetail = Contact(id = 0, firstName, lastName, phoneNumber,birthday, address, zipCode)
 
-        if (firstName == "" || lastName == "" || phoneNumber == "" || address == "" || zipCode == "") {
+        contactDetail = Contact(null, firstName, lastName, phoneNumber,birthday, address, zipCode )
+
+        if (firstName == "" || lastName == "" || phoneNumber == "" || address == "" || zipCode == "" || birthday == "") {
             Snackbar.make(binding.contactDetailLayout, R.string.fill_blank, Snackbar.LENGTH_LONG).show()
         } else {
             viewModel.saveContact(contactDetail)
             Snackbar.make(binding.contactDetailLayout, R.string.contact_added, Snackbar.LENGTH_LONG).show()
+            finish()
         }
     }
 

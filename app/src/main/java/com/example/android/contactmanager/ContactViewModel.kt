@@ -8,29 +8,22 @@ import com.example.android.contactmanager.db.Contact
 import com.example.android.contactmanager.db.ContactRepository
 import kotlinx.coroutines.launch
 
-class ContactViewModel (private val contactRepository: ContactRepository ) : ViewModel() {
+class ContactViewModel(): ViewModel() {
 
-    private val _allContacts = MutableLiveData<List<Contact>>()
-    val allContacts: LiveData<List<Contact>>
-    get() = _allContacts
 
-    fun getAllContact(){
-        val contacts = contactRepository.allContacts
-        val contactList = mutableListOf<Contact>()
-        contactList.addAll(contacts)
-    }
+
+    val contactLiveData =  ContactRepository.allContacts
 
     fun saveContact(contact: Contact) = viewModelScope.launch {
-        contactRepository.insert(contact)
+        ContactRepository.insert(contact)
     }
 
-    fun deleteContactById(id: Long) = viewModelScope.launch {
-        contactRepository.deleteContactById(id)
+    fun deleteContactById(id: Int) = viewModelScope.launch {
+        ContactRepository.deleteContactById(id)
     }
 
     fun updateContact(contact: Contact) = viewModelScope.launch {
-        contactRepository.update(contact)
+        ContactRepository.update(contact)
     }
 
-//    fun getContactId(id: Long): Long = contactRepository.getContactId(id)
 }

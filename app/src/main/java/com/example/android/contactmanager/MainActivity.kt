@@ -2,36 +2,37 @@ package com.example.android.contactmanager
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.android.contactmanager.*
 import com.example.android.contactmanager.databinding.ActivityMainBinding
-import com.example.android.contactmanager.db.Contact
-import com.example.android.contactmanager.db.ContactViewModelFactory
+import com.example.android.contactmanager.db.*
 import com.google.android.material.snackbar.Snackbar
+
+private const val CONTACTS = 100
+private const val EDIT_CONTACTS = 200
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var adapter: ContactAdapter
-    private lateinit var binding: ActivityMainBinding
+  private lateinit var binding: ActivityMainBinding
     private lateinit var viewModel: ContactViewModel
-    private lateinit var viewModelFactory: ContactViewModelFactory
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        viewModel = ViewModelProvider(this, viewModelFactory).get(ContactViewModel::class.java)
+
+        viewModel = ViewModelProvider(this).get(ContactViewModel::class.java)
+
         binding.fabButton.setOnClickListener {
-            val intent =  Intent(this@MainActivity, ContactDetail::class.java)
-            startActivity(intent)
+            showContacts()
         }
 
         initRecyclerview()
-        //update
-
     }
 
     private fun initRecyclerview() {
@@ -39,16 +40,21 @@ class MainActivity : AppCompatActivity() {
         adapter = ContactAdapter { selectedItem: Contact -> listItemClicked(selectedItem)}
         binding.recyclerView.adapter  = adapter
         displayContactsList()
+
     }
 
     private fun displayContactsList() {
-        viewModel.getAllContact()
-        viewModel.allContacts.observe(this,{
-            adapter.showContacts(it)
+        viewModel.contactLiveData.observe(this, { contact ->
+            Log.i("TAG", "displayContactsList: $contact")
+            adapter.showContacts(contact)
             adapter.notifyDataSetChanged()
-            Snackbar.make(binding.mainActivityLayout, R.string.contact_added, Snackbar.LENGTH_LONG).show()
         })
 
+    }
+
+    private fun showContacts(){
+        val intent = Intent(this@MainActivity, ContactDetail::class.java)
+        startActivityForResult(intent, CONTACTS)
     }
 
     private fun listItemClicked(contact: Contact) {
@@ -62,8 +68,21 @@ class MainActivity : AppCompatActivity() {
             it.putExtra(CONTACT_BIRTHDAY, contact.birthday)
 
         }
-        startActivity(intent)
+        startActivityForResult(intent, EDIT_CONTACTS)
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        when (requestCode) {
+            CONTACTS -> {
+                Snackbar.make(binding.mainActivityLayout, R.string.contact_added, Snackbar.LENGTH_LONG).show()
+            }
+            EDIT_CONTACTS -> {
+                Snackbar.make(binding.mainActivityLayout, R.string.contact_updated, Snackbar.LENGTH_LONG).show()
+            }
+            else -> {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+        }
+    }
 
 }
